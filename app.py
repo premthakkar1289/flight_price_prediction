@@ -3,6 +3,7 @@ from flask_cors import cross_origin
 import sklearn
 import pickle
 import pandas as pd
+import os
 
 app = Flask(__name__)
 model = pickle.load(open("flight_rf.pkl", "rb"))
@@ -365,4 +366,4 @@ def predict():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
